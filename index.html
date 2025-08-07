@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बेडकीचा पाला (Gymnema sylvestre) - Updated Guide</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js for the conservation chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts for Inter and Tiro Devanagari Marathi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Tiro+Devanagari+Marathi:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111111;
+            color: #F7F7F7;
+        }
+       .marathi-title {
+            font-family: 'Tiro Devanagari Marathi', serif;
+        }
+       .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+           .chart-container {
+                height: 300px;
+            }
+        }
+       .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+       .nav-link:hover, .nav-link.active {
+            color: #C8C8C8;
+            border-bottom-color: #C8C8C8;
+        }
+       .tab-button.active {
+            background-color: #F7F7F7;
+            color: #111111;
+        }
+       .plant-part-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+       .plant-part-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05);
+        }
+        /* Custom modal-like message box styling */
+        .message-box {
+            animation: fadeInOut 3s forwards;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-black/80 backdrop-blur-sm text-white sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-xl font-bold">
+                <span class="marathi-title">बेडकीचा पाला</span>
+                <span class="text-sm opacity-80 hidden sm:inline">/ Gymnema sylvestre</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#intro" class="nav-link px-2 py-1">परिचय</a>
+                <a href="#properties" class="nav-link px-2 py-1">गुणधर्म</a>
+                <a href="#uses" class="nav-link px-2 py-1">उपयोग</a>
+                <a href="#safety" class="nav-link px-2 py-1">सुरक्षितता</a>
+                <a href="#order" class="nav-link px-2 py-1">ऑर्डर करा</a>
+                <a href="#conservation" class="nav-link px-2 py-1">संवर्धन</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <div class="w-6 h-0.5 bg-white mb-1.5"></div>
+                <div class="w-6 h-0.5 bg-white mb-1.5"></div>
+                <div class="w-6 h-0.5 bg-white"></div>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#intro" class="block py-2 text-center nav-link">परिचय</a>
+            <a href="#properties" class="block py-2 text-center nav-link">गुणधर्म</a>
+            <a href="#uses" class="block py-2 text-center nav-link">उपयोग</a>
+            <a href="#safety" class="block py-2 text-center nav-link">सुरक्षितता</a>
+            <a href="#order" class="block py-2 text-center nav-link">ऑर्डर करा</a>
+            <a href="#conservation" class="block py-2 text-center nav-link">संवर्धन</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="relative text-center py-20 sm:py-32 bg-gray-900 text-gray-100">
+            <div class="relative container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold marathi-title">बेडकीचा पाला</h1>
+                <h2 class="text-2xl md:text-4xl font-light mt-2">Gymnema sylvestre</h2>
+                <p class="mt-4 text-xl md:text-2xl text-gray-300 font-semibold">"गुरमार" - The Destroyer of Sugar</p>
+                <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-200">An ancient medicinal climber revered in Ayurveda, now validated by modern science for its remarkable health benefits, especially in metabolic health.</p>
+            </div>
+        </section>
+
+        <section id="intro" class="py-16 md:py-24 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-200">परिचय: वनस्पतीची ओळख</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-400">This section introduces *Gymnema sylvestre*, a woody climber belonging to the Apocynaceae family. We'll explore its physical characteristics and wide geographical distribution, providing a foundational understanding of this significant medicinal plant.</p>
+               
+                <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-200">Botanical Profile</h3>
+                        <div class="space-y-6">
+                            <div class="plant-part-card bg-gray-800 p-4 rounded-lg border border-gray-700">
+                                <h4 class="font-bold text-lg text-gray-100">🌿 Leaves (पाने)</h4>
+                                <p class="text-gray-300">Ovate-elliptic and hairy on both surfaces. Chewing a leaf famously suppresses the taste of sweetness.</p>
+                            </div>
+                             <div class="plant-part-card bg-gray-800 p-4 rounded-lg border border-gray-700">
+                                <h4 class="font-bold text-lg text-gray-100">🌼 Flowers (फुले)</h4>
+                                <p class="text-gray-300">Small, yellow, and bell-shaped, appearing in clusters (umbellate cymes) typically from October to January.</p>
+                            </div>
+                             <div class="plant-part-card bg-gray-800 p-4 rounded-lg border border-gray-700">
+                                <h4 class="font-bold text-lg text-gray-100">🌱 Fruits (फळे)</h4>
+                                <p class="text-gray-300">Rigid, lance-shaped follicles that taper to a beak, containing flat, winged seeds.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-200">Geographical Distribution</h3>
+                        <div class="bg-gray-800 p-6 rounded-lg shadow-inner">
+                            <p class="text-center text-gray-200 mb-4">This plant thrives in tropical and subtropical climates worldwide. Hover over regions to learn more.</p>
+                            <div class="space-y-3">
+                                <div class="distribution-region p-3 bg-gray-700 rounded-lg shadow-sm cursor-pointer" data-info="Widespread across tropical Africa, Arabia, China, Japan, Southeast Asia, and Australia.">
+                                    <p class="font-bold text-gray-100">🌍 Global Presence</p>
+                                </div>
+                                <div class="distribution-region p-3 bg-gray-700 rounded-lg shadow-sm cursor-pointer" data-info="Found throughout Peninsular India, in states like Karnataka, Maharashtra, Tamil Nadu, and Madhya Pradesh, typically on hill slopes up to 800m.">
+                                    <p class="font-bold text-gray-100">🇮🇳 Indian Distribution</p>
+                                </div>
+                            </div>
+                            <div id="distribution-tooltip" class="mt-4 p-3 bg-gray-600 text-gray-100 rounded-lg text-center font-medium hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="properties" class="py-16 md:py-24 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-200">गुणधर्म: वनस्पतीमागील विज्ञान</h2>
+                 <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-400">Here, we delve into the science behind *Gymnema sylvestre*'s effects. This section explains its key phytochemicals—the active compounds responsible for its medicinal properties—and visually demonstrates the fascinating mechanism of sweet taste suppression.</p>
+
+                <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-200">Key Active Constituents</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <span class="text-gray-400 font-bold text-xl mr-3">›</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-100">Gymnemic Acids</h4>
+                                    <p class="text-gray-300">The primary active compounds. These triterpene saponins are responsible for both sweet taste suppression and the plant's anti-diabetic effects.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-gray-400 font-bold text-xl mr-3">›</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-100">Gurmarin</h4>
+                                    <p class="text-gray-300">A polypeptide that specifically targets taste buds, blocking the ability to perceive sweet tastes.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-gray-400 font-bold text-xl mr-3">›</span>
+                                <div>
+                                    <h4 class="font-bold text-gray-100">Other Compounds</h4>
+                                    <p class="text-gray-300">Contains flavones, alkaloids, and saponins that contribute to its antioxidant, anti-inflammatory, and antimicrobial properties.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-semibold mb-4 text-center text-gray-200">How it Blocks Sweetness</h3>
+                        <div id="taste-diagram" class="relative h-48 flex items-center justify-center space-x-4">
+                            <div class="text-center">
+                                <div id="sugar-molecule" class="w-12 h-12 bg-gray-500 rounded-full flex items-center justify-center text-white font-bold transition-all duration-500">S</div>
+                                <p class="text-sm mt-1 text-gray-400">Sugar</p>
+                            </div>
+                            <div class="text-3xl font-bold text-gray-400 transition-all duration-500" id="arrow">→</div>
+                            <div class="text-center">
+                                <div id="receptor" class="w-16 h-16 border-4 border-gray-100 rounded-lg flex items-center justify-center text-gray-100 font-bold transition-all duration-500">Taste</div>
+                                <p class="text-sm mt-1 text-gray-400">Receptor</p>
+                            </div>
+                            <div id="gymnema-molecule" class="absolute w-12 h-12 bg-gray-400 rounded-full flex items-center justify-center text-gray-900 font-bold transition-all duration-500 opacity-0" style="left: 50%; top: -20px; transform: translateX(-50%);">G</div>
+                        </div>
+                        <p id="taste-explanation" class="text-center mt-4 text-gray-300">Normally, sugar molecules bind to taste receptors, sending a sweet signal to the brain.</p>
+                        <div class="text-center mt-6">
+                            <button id="toggle-gymnema" class="bg-gray-100 text-gray-900 px-6 py-2 rounded-full hover:bg-white transition">Activate Gymnema</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="uses" class="py-16 md:py-24 bg-gray-900">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-200">उपयोग: आरोग्यदायी फायदे</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-400">This section details the extensive therapeutic applications of *Gymnema sylvestre*, validated by both traditional use and modern research. Explore its primary role in diabetes management and discover its benefits for weight control, inflammation, and more through the interactive cards below.</p>
+               
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="use-card bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-gray-500 cursor-pointer" data-use="diabetes">
+                        <h3 class="text-xl font-bold text-gray-100">Antidiabetic Activity</h3>
+                        <p class="mt-2 text-gray-300">Its most famous use. Helps lower blood sugar through multiple mechanisms. Click to see how.</p>
+                    </div>
+                    <div class="use-card bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-gray-500 cursor-pointer" data-use="weight">
+                        <h3 class="text-xl font-bold text-gray-100">Weight Management</h3>
+                        <p class="mt-2 text-gray-300">Aids in weight loss by reducing sugar cravings and improving lipid profiles.</p>
+                    </div>
+                    <div class="use-card bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-gray-500 cursor-pointer" data-use="inflammation">
+                        <h3 class="text-xl font-bold text-gray-100">Anti-inflammatory</h3>
+                        <p class="mt-2 text-gray-300">Traditionally used for arthritis; helps reduce inflammation and protect against free radicals.</p>
+                    </div>
+                    <div class="use-card bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-gray-500 cursor-pointer" data-use="antimicrobial">
+                        <h3 class="text-xl font-bold text-gray-100">Antimicrobial</h3>
+                        <p class="mt-2 text-gray-300">Effective against bacteria and fungi, making it useful in dental health products.</p>
+                    </div>
+                    <div class="use-card bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-gray-500 cursor-pointer" data-use="liver">
+                        <h3 class="text-xl font-bold text-gray-100">Hepatoprotective</h3>
+                        <p class="mt-2 text-gray-300">Shows potential in protecting the liver from certain types of damage.</p>
+                    </div>
+                    <div class="use-card bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-gray-500 cursor-pointer" data-use="traditional">
+                        <h3 class="text-xl font-bold text-gray-100">Other Traditional Uses</h3>
+                        <p class="mt-2 text-gray-300">Used for cough, jaundice, constipation, eye complaints, and even snakebites in folklore medicine.</p>
+                    </div>
+                </div>
+
+                <div id="use-details-container" class="mt-12"></div>
+            </div>
+        </section>
+
+        <section id="safety" class="py-16 md:py-24 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-200">सुरक्षितता: खबरदारी आणि दुष्परिणाम</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-300">While generally safe, it's crucial to understand the potential risks. This section outlines reported side effects, critical drug interactions (especially for diabetics), and populations that should use this herb with caution or avoid it altogether. Always consult a healthcare provider before use.</p>
+
+                <div class="mt-12 max-w-4xl mx-auto bg-gray-900 rounded-lg shadow-lg p-6">
+                    <div class="flex border-b border-gray-700">
+                        <button class="tab-button flex-1 py-3 px-2 text-center font-semibold text-gray-400 transition active" data-tab="side-effects">Mild Side Effects</button>
+                        <button class="tab-button flex-1 py-3 px-2 text-center font-semibold text-gray-400 transition" data-tab="interactions">Drug Interactions</button>
+                        <button class="tab-button flex-1 py-3 px-2 text-center font-semibold text-gray-400 transition" data-tab="contraindications">Contraindications</button>
+                    </div>
+                    <div class="pt-6">
+                        <div id="side-effects-content" class="tab-content space-y-3">
+                            <p class="text-gray-300">At recommended doses, side effects are mild. Excessive intake can cause hypoglycemia (low blood sugar).</p>
+                            <ul class="list-disc list-inside text-gray-400">
+                                <li>Gastrointestinal issues (nausea, cramps)</li>
+                                <li>Headache, dizziness, weakness</li>
+                                <li>Metallic taste in mouth</li>
+                            </ul>
+                        </div>
+                        <div id="interactions-content" class="tab-content hidden space-y-3">
+                            <p class="font-bold text-gray-400">CRITICAL: Monitor blood sugar closely if taking diabetes medications.</p>
+                            <ul class="list-disc list-inside text-gray-400">
+                                <li><span class="font-semibold text-gray-300">Diabetes Drugs (Insulin, etc.):</span> Can amplify their effect, leading to severe hypoglycemia. Dosage adjustment may be needed under medical supervision.</li>
+                                <li><span class="font-semibold text-gray-300">Blood Thinners:</span> Potential interactions noted, use with caution.</li>
+                                <li><span class="font-semibold text-gray-300">Drug Metabolism:</span> May interact with liver enzymes (cytochrome P450), potentially altering how other drugs work.</li>
+                            </ul>
+                        </div>
+                        <div id="contraindications-content" class="tab-content hidden space-y-3">
+                            <p class="font-bold text-gray-400">Certain groups should AVOID using this herb:</p>
+                            <ul class="list-disc list-inside text-gray-400">
+                                <li>Pregnancy and breastfeeding</li>
+                                <li>Children and infants</li>
+                                <li>Individuals with liver issues</li>
+                                <li>Those with a known allergy to the milkweed family</li>
+                                <li>At least 2 weeks before scheduled surgery</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="order" class="py-16 md:py-24 bg-gray-900">
+            <div class="container mx-auto px-6 max-w-2xl">
+                <h2 class="text-3xl md:text-4xl font-bold text-center marathi-title text-gray-200">ऑर्डर करा: बेडकीचा पाला पावडर</h2>
+                <p class="mt-4 text-center text-lg text-gray-400">
+                    आपल्या आरोग्यासाठी उपयुक्त बेडकीचा पाला पावडर सहजपणे ऑर्डर करा. 
+                    तुम्ही खालील फॉर्मद्वारे ईमेल पाठवू शकता किंवा थेट Google Form भरू शकता.
+                </p>
+
+                <div class="mt-12 bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                    <h3 class="text-xl font-bold marathi-title mb-4 text-gray-200">उत्पादन आणि किंमत सूची</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-700">
+                            <thead>
+                                <tr class="bg-gray-700">
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">उत्पादन</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">वजन (Weight)</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">किंमत (Price)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-gray-900 divide-y divide-gray-700">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">बेडकीचा पाला पावडर</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">100 ग्रॅम</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-price="250">₹250</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">बेडकीचा पाला पावडर</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">250 ग्रॅम</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-price="550">₹550</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-100">बेडकीचा पाला पावडर</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">500 ग्रॅम</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400" data-price="1000">₹1000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-gray-800 p-8 rounded-lg shadow-lg">
+                    <p class="text-center text-lg text-gray-300 mb-6 font-semibold">तुमची ऑर्डर खालील फॉर्मद्वारे ईमेलने पाठवा:</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="name-input" class="block text-gray-300 font-semibold mb-2">तुमचं नाव (Name)</label>
+                            <input type="text" id="name-input" class="w-full p-3 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all bg-gray-700 text-white" placeholder="उदा. सुनील कुमार">
+                        </div>
+                        <div>
+                            <label for="address-textarea" class="block text-gray-300 font-semibold mb-2">पत्ता (Address)</label>
+                            <textarea id="address-textarea" rows="4" class="w-full p-3 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all bg-gray-700 text-white" placeholder="उदा. अपार्टमेंट नं. 101, सूर्योदय बिल्डिंग"></textarea>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="city-input" class="block text-gray-300 font-semibold mb-2">शहर (City)</label>
+                                <input type="text" id="city-input" class="w-full p-3 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all bg-gray-700 text-white" placeholder="उदा. मुंबई">
+                            </div>
+                            <div>
+                                <label for="state-input" class="block text-gray-300 font-semibold mb-2">राज्य (State)</label>
+                                <input type="text" id="state-input" class="w-full p-3 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all bg-gray-700 text-white" placeholder="उदा. महाराष्ट्र">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="pincode-input" class="block text-gray-300 font-semibold mb-2">पिन कोड (Pincode)</label>
+                            <input type="text" id="pincode-input" class="w-full p-3 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all bg-gray-700 text-white" placeholder="उदा. 400001">
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="product-select" class="block text-gray-300 font-semibold mb-2">उत्पादन निवडा (Select Product)</label>
+                                <select id="product-select" class="w-full p-3 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all bg-gray-700 text-white">
+                                    <option value="250">100 ग्रॅम - ₹250</option>
+                                    <option value="550">250 ग्रॅम - ₹550</option>
+                                    <option value="1000">500 ग्रॅम - ₹1000</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="quantity-input" class="block text-gray-300 font-semibold mb-2">प्रमाण (Quantity)</label>
+                                <input type="number" id="quantity-input" value="1" min="1" class="w-full p-3 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400 transition-all bg-gray-700 text-white">
+                            </div>
+                        </div>
+                        <div class="text-right pt-2">
+                             <p class="text-xl font-bold text-gray-200">एकूण किंमत (Total Price): <span id="total-price">₹250</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 text-center">
+                        <button id="place-order-button" class="bg-gray-200 text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-white transition-all shadow-md hover:shadow-lg">
+                            bedakichapala@gmail.com ईमेलद्वारे ऑर्डर प्लेस करा
+                        </button>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                         <p class="text-lg text-gray-300 mb-4 font-semibold">किंवा Google Form भरून ऑर्डर करा:</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeM6fmSB7AzHV5ttpviwpKHsGai_bzOZOFMO7ck5pt_ZIW4dA/viewform?usp=dialog" target="_blank" id="google-form-button" class="inline-block bg-gray-400 text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-gray-300 transition-all shadow-md hover:shadow-lg">
+                             Google Form वर जा
+                        </a>
+                    </div>
+                    
+                </div>
+                
+                <div id="order-message-box" class="fixed bottom-8 left-1/2 -translate-x-1/2 hidden bg-gray-400 text-gray-900 px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300 message-box">
+                    <p>ऑर्डर यशस्वी झाली आहे! तुमच्या ईमेलमध्ये पत्ता तपासा.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="conservation" class="py-16 md:py-24 bg-gray-800">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-200">संवर्धन: संरक्षण आणि लागवड</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-center text-lg text-gray-400">The high commercial demand for *Gymnema sylvestre* has put wild populations under threat. This section highlights its conservation status across India and outlines sustainable cultivation practices, which are essential for protecting this valuable natural resource for future generations.</p>
+               
+                <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-200">Regional Conservation Status in India</h3>
+                        <p class="mb-4 text-gray-300">While not globally evaluated, the plant is threatened in several Indian states due to over-harvesting. The chart shows the status where data is available.</p>
+                        <div class="chart-container">
+                            <canvas id="conservationChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-lg">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-200">Sustainable Cultivation</h3>
+                        <p class="mb-6 text-gray-300">Organized farming is key to meeting demand and protecting wild plants. The process involves several key steps:</p>
+                        <ol class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="bg-gray-500 text-white rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center font-bold mr-4">1</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-100">Propagation</h4>
+                                    <p class="text-gray-400">Best done using stem cuttings from one-year-old plants, as seed germination is poor. Pretreatment of seeds with cold water can improve germination.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-gray-500 text-white rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center font-bold mr-4">2</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-100">Training</h4>
+                                    <p class="text-gray-400">Since it is a climbing plant, it requires a support structure. Trellises, fences, or other large trees can be used to help the plant grow vertically and maximize leaf production.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-gray-500 text-white rounded-full w-8 h-8 flex-shrink-0 flex items-center justify-center font-bold mr-4">3</div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-100">Harvesting</h4>
+                                    <p class="text-gray-400">Leaves can be harvested multiple times a year, starting from the second year of planting. The best time for harvesting is during the flowering and fruiting season (October to January) when the active compounds are most concentrated.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2024 बेडकीचा पाला. All rights reserved.</p>
+            <p class="mt-2 text-sm opacity-75">Designed for educational and informational purposes only. Consult a healthcare professional before use.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // --- Navigation Link Active State & Smooth Scroll ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // Smooth scroll to the target section
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    
+                    // Update active class for desktop links
+                    if (window.innerWidth >= 768) {
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        link.classList.add('active');
+                    }
+                    
+                    // Close mobile menu
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Set active class on page load and on scroll
+            const sections = document.querySelectorAll('main section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5 // Adjust threshold to determine when a section is "active"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+
+            // --- Geographical Distribution Tooltip ---
+            const distributionRegions = document.querySelectorAll('.distribution-region');
+            const tooltip = document.getElementById('distribution-tooltip');
+
+            distributionRegions.forEach(region => {
+                region.addEventListener('mouseenter', () => {
+                    tooltip.textContent = region.getAttribute('data-info');
+                    tooltip.classList.remove('hidden');
+                });
+                region.addEventListener('mouseleave', () => {
+                    tooltip.classList.add('hidden');
+                });
+            });
+
+            // --- Gymnema Sweetness Blocking Animation ---
+            const toggleButton = document.getElementById('toggle-gymnema');
+            const sugar = document.getElementById('sugar-molecule');
+            const receptor = document.getElementById('receptor');
+            const gymnema = document.getElementById('gymnema-molecule');
+            const explanation = document.getElementById('taste-explanation');
+            let isActivated = false;
+
+            toggleButton.addEventListener('click', () => {
+                isActivated = !isActivated;
+                if (isActivated) {
+                    toggleButton.textContent = 'Deactivate Gymnema';
+                    toggleButton.classList.remove('bg-gray-100', 'hover:bg-white');
+                    toggleButton.classList.add('bg-gray-400', 'hover:bg-gray-300');
+                    
+                    // Move gymnema molecule to block the receptor
+                    gymnema.style.top = '50%';
+                    gymnema.style.transform = 'translate(-50%, -50%)';
+                    gymnema.classList.remove('opacity-0');
+                    
+                    // Move sugar away and change explanation
+                    sugar.style.transform = 'translateX(-80px)';
+                    sugar.classList.add('opacity-50');
+                    explanation.textContent = 'The Gymnema molecule binds to the sweet taste receptor, preventing sugar from attaching and sending a signal to the brain.';
+                } else {
+                    toggleButton.textContent = 'Activate Gymnema';
+                    toggleButton.classList.remove('bg-gray-400', 'hover:bg-gray-300');
+                    toggleButton.classList.add('bg-gray-100', 'hover:bg-white');
+                    
+                    // Reset to initial state
+                    gymnema.style.top = '-20px';
+                    gymnema.style.transform = 'translateX(-50%)';
+                    gymnema.classList.add('opacity-0');
+                    
+                    sugar.style.transform = 'translateX(0)';
+                    sugar.classList.remove('opacity-50');
+                    explanation.textContent = 'Normally, sugar molecules bind to taste receptors, sending a sweet signal to the brain.';
+                }
+            });
+
+            // --- Use Card Dynamic Content Display ---
+            const useCards = document.querySelectorAll('.use-card');
+            const useDetailsContainer = document.getElementById('use-details-container');
+            const useDetails = {
+                diabetes: {
+                    title: 'Antidiabetic Activity',
+                    content: 'Gymnema sylvestre works by a dual mechanism. Gymnemic acids block sugar absorption in the intestines and also stimulate the pancreas to increase insulin secretion, thereby helping to lower blood glucose levels.'
+                },
+                weight: {
+                    title: 'Weight Management',
+                    content: 'By inhibiting the sweet taste receptors, Gymnema sylvestre can help reduce sugar cravings. Its ability to block fat absorption from the intestines and lower bad cholesterol (LDL) also contributes to weight management.'
+                },
+                inflammation: {
+                    title: 'Anti-inflammatory',
+                    content: 'The plant possesses compounds with anti-inflammatory and antioxidant properties. This makes it beneficial in managing chronic inflammatory conditions like arthritis and protecting cells from damage caused by free radicals.'
+                },
+                antimicrobial: {
+                    title: 'Antimicrobial',
+                    content: 'Studies have shown that extracts from the leaves can inhibit the growth of various bacteria and fungi. It is sometimes used in oral health products to combat dental plaque and other microbial infections.'
+                },
+                liver: {
+                    title: 'Hepatoprotective',
+                    content: 'The antioxidants present in Gymnema sylvestre help protect the liver from oxidative stress and damage caused by toxins. This protective effect supports overall liver health.'
+                },
+                traditional: {
+                    title: 'Other Traditional Uses',
+                    content: 'In traditional Ayurvedic medicine, the leaves have been used for a wide range of ailments, including digestive issues like constipation, respiratory problems like coughs, and even as a folk remedy for snakebites and jaundice.'
+                }
+            };
+
+            useCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const useType = card.getAttribute('data-use');
+                    const details = useDetails[useType];
+                    if (details) {
+                        useDetailsContainer.innerHTML = `
+                            <div class="bg-gray-800 p-6 rounded-lg shadow-md border-l-8 border-gray-400">
+                                <h3 class="text-2xl font-bold text-gray-200 mb-2">${details.title}</h3>
+                                <p class="text-gray-300">${details.content}</p>
+                            </div>
+                        `;
+                    }
+                });
+            });
+
+            // --- Safety Tab Logic ---
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active state from all buttons and content
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.add('hidden'));
+
+                    // Add active state to the clicked button
+                    button.classList.add('active');
+
+                    // Show the corresponding content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-content`).classList.remove('hidden');
+                });
+            });
+
+            // --- Order Form Calculation and Mailto Link Generation ---
+            const productSelect = document.getElementById('product-select');
+            const quantityInput = document.getElementById('quantity-input');
+            const totalPriceSpan = document.getElementById('total-price');
+            const placeOrderButton = document.getElementById('place-order-button');
+            const nameInput = document.getElementById('name-input');
+            const addressTextarea = document.getElementById('address-textarea');
+            const cityInput = document.getElementById('city-input');
+            const stateInput = document.getElementById('state-input');
+            const pincodeInput = document.getElementById('pincode-input');
+            const orderMessageBox = document.getElementById('order-message-box');
+            const prices = {
+                '250': 250,
+                '550': 550,
+                '1000': 1000
+            };
+
+            function updateTotalPrice() {
+                const selectedPrice = parseInt(productSelect.value);
+                const quantity = parseInt(quantityInput.value);
+                const total = selectedPrice * quantity;
+                totalPriceSpan.textContent = `₹${total}`;
+            }
+
+            productSelect.addEventListener('change', updateTotalPrice);
+            quantityInput.addEventListener('input', updateTotalPrice);
+
+            placeOrderButton.addEventListener('click', () => {
+                const name = nameInput.value;
+                const address = addressTextarea.value;
+                const city = cityInput.value;
+                const state = stateInput.value;
+                const pincode = pincodeInput.value;
+                const product = productSelect.options[productSelect.selectedIndex].text;
+                const quantity = quantityInput.value;
+                const total = totalPriceSpan.textContent;
+
+                const body = `Hello, I would like to place an order for the following:\n\nProduct: ${product}\nQuantity: ${quantity}\nTotal Price: ${total}\n\nShipping Details:\nName: ${name}\nAddress: ${address}\nCity: ${city}\nState: ${state}\nPincode: ${pincode}\n\nThank you.`;
+                const mailtoLink = `mailto:bedakichapala@gmail.com?subject=Order for Bedki cha Pala Powder&body=${encodeURIComponent(body)}`;
+                
+                // Show the success message box
+                orderMessageBox.classList.remove('hidden');
+                setTimeout(() => {
+                    orderMessageBox.classList.add('hidden');
+                }, 3000); // Hide after 3 seconds
+
+                window.location.href = mailtoLink;
+            });
+            
+            // --- Conservation Chart.js Initialization ---
+            const ctx = document.getElementById('conservationChart').getContext('2d');
+            const conservationChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Maharashtra', 'Karnataka', 'Tamil Nadu', 'Madhya Pradesh'],
+                    datasets: [{
+                        label: 'Conservation Status',
+                        data: [80, 70, 60, 50], // Sample data (in arbitrary units for threat level)
+                        backgroundColor: [
+                            'rgba(255, 255, 255, 0.8)',
+                            'rgba(200, 200, 200, 0.8)',
+                            'rgba(150, 150, 150, 0.8)',
+                            'rgba(100, 100, 100, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 255, 255, 1)',
+                            'rgba(200, 200, 200, 1)',
+                            'rgba(150, 150, 150, 1)',
+                            'rgba(100, 100, 100, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Threat Level (Arbitrary)',
+                                font: {
+                                    size: 14,
+                                    color: '#F7F7F7'
+                                },
+                                color: '#F7F7F7'
+                            },
+                            ticks: {
+                                color: '#F7F7F7'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Indian State',
+                                font: {
+                                    size: 14,
+                                    color: '#F7F7F7'
+                                },
+                                color: '#F7F7F7'
+                            },
+                             ticks: {
+                                color: '#F7F7F7'
+                            },
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `Threat Level in ${context.label}: ${context.raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
